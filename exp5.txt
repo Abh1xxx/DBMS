@@ -1,0 +1,274 @@
+ MariaDB [ABU]> show tables;
++---------------+
+| Tables_in_ABU |
++---------------+
+| COMPANY       |
+| EMP           |
+| MANAGES       |
+| WORKS         |
++---------------+
+4 rows in set (0.001 sec)
+
+
+MariaDB [ABU]> insert into COMPANY values("SBI","KOTTAYAM");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ABU]> insert into COMPANY values("INDIAN BANK","KOCHI");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> desc EMP;
+
+
+
+MariaDB [ABU]> desc EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | varchar(20) | NO   | PRI | NULL    |       |
+| EMP_NAME  | varchar(20) | NO   |     | NULL    |       |
+| STREET_NO | varchar(20) | YES  |     | NULL    |       |
+| CITY      | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [ABU]> insert into EMP values("E1","ABHI","100","KOTTAYAM");
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into EMP values("E2","ABU","100","KOTTAYAM");
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into EMP values("E3","MANU","200","KOLLAM");
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into EMP values("E4","ARUN","300","KOCHI");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [ABU]> insert into EMP values("E5","ARJUN","300","KOCHI");
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into EMP values("E6","PARU","400","TRIVANDRUM");
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [ABU]> insert into EMP values("E7","MARIA","400","TRIVANDRUM");
+Query OK, 1 row affected (0.067 sec
+
+MariaDB [ABU]> select * from EMP;
++--------+----------+-----------+------------+
+| EMP_ID | EMP_NAME | STREET_NO | CITY       |
++--------+----------+-----------+------------+
+| E1     | ABHI     | 100       | KOTTAYAM   |
+| E2     | ABU      | 100       | KOTTAYAM   |
+| E3     | MANU     | 200       | KOLLAM     |
+| E4     | ARUN     | 300       | KOCHI      |
+| E5     | ARJUN    | 300       | KOCHI      |
+| E6     | PARU     | 400       | TRIVANDRUM |
++--------+----------+-----------+------------+
+
+
+
+MariaDB [ABU]> desc WORKS;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMP_ID       | varchar(20) | YES  | MUL | NULL    |       |
+| COMPANY_NAME | varchar(20) | YES  | MUL | NULL    |       |
+| SALARY       | int(11)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [ABU]> insert into WORKS values("E1","SBI",60000);
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into WORKS values("E2","SBI",20000);
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into WORKS values("E3","SBI",30000);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> insert into WORKS values("E4","INDIAN BANK",15000);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [ABU]> insert into WORKS values("E5","INDIAN BANK",15000);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> insert into WORKS values("E6","INDIAN BANK",25000);
+Query OK, 1 row affected (0.067 sec)
+
+MariaDB [ABU]> insert into WORKS values("E7","INDIAN BANK",27000);
+Query OK, 1 row affected (0.069 sec)
+
+--------------------------------------
+MariaDB [ABU]> desc MANAGES;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| EMP_ID      | varchar(20) | YES  | MUL | NULL    |       |
+| MANAGERS_ID | varchar(20) | YES  | MUL | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E1","E1");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E2","E1");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E3","E1");
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E4","E4");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E5","E4");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E6","E4");
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ABU]> insert into MANAGES values("E7","E4");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ABU]> select * from MANAGES;
++--------+-------------+
+| EMP_ID | MANAGERS_ID |
++--------+-------------+
+| E1     | E1          |
+| E2     | E1          |
+| E3     | E1          |
+| E4     | E4          |
+| E5     | E4          |
+| E6     | E4          |
+| E7     | E4          |
++--------+-------------+
+7 rows in set (0.001 sec)
+
+
+ MariaDB [ABU]> delete from MANAGES where EMP_ID="E1" or  EMP_ID="E4";
+Query OK, 2 rows affected (0.070 sec)
+
+MariaDB [ABU]> select * from MANAGES;
++--------+-------------+
+| EMP_ID | MANAGERS_ID |
++--------+-------------+
+| E2     | E1          |
+| E3     | E1          |
+| E5     | E4          |
+| E6     | E4          |
+| E7     | E4          |
++--------+-------------+
+5 rows in set (0.000 sec)
+
+ ___________________________________________________________________________________________
+ 1
+
+MariaDB [ABU]> select EMP_NAME from EMP where EMP_ID  IN(select EMP_ID from WORKS where COMPANY_NAME="SBI");
++----------+
+| EMP_NAME |
++----------+
+| ABHI     |
+| ABU      |
+| MANU     |
++----------+
+3 rows in set (0.001 sec)
+
+2
+
+MariaDB [ABU]> select DISTINCT EMP.EMP_NAME,COMPANY.COMPANY_NAME from EMP,WORKS,COMPANY where COMPANY.COMPANY_NAME=WORKS.COMPANY_NAME AND EMP.CITY=COMPANY.CITY;
++----------+--------------+
+| EMP_NAME | COMPANY_NAME |
++----------+--------------+
+| ABHI     | SBI          |
+| ABU      | SBI          |
+| ARUN     | INDIAN BANK  |
+| ARJUN    | INDIAN BANK  |
++----------+--------------+
+4 rows in set (0.001 sec)
+
+
+3
+
+MariaDB [ABU]> select e1.EMP_NAME "EMPOLYEE NAME",e2.EMP_NAME "MANAGER NAME" from EMP e1,EMP e2,MANAGES where MANAGES.MANAGERS_ID=e2.EMP_ID AND MANAGES.EMP_ID=e1.EMP_ID AND e1.CITY=e2.CITY AND e1.STREET_NO=e2.STREET_NO;
++---------------+--------------+
+| EMPOLYEE NAME | MANAGER NAME |
++---------------+--------------+
+| ABU           | ABHI         |
+| ARJUN         | ARUN         |
++---------------+--------------+
+2 rows in set (0.001 sec)
+
+
+4
+
+
+MariaDB [ABU]> select * from WORKS where SALARY>(select avg(SALARY) from WORKS);
++--------+--------------+--------+
+| EMP_ID | COMPANY_NAME | SALARY |
++--------+--------------+--------+
+| E1     | SBI          |  60000 |
+| E3     | SBI          |  30000 |
++--------+--------------+--------+
+2 rows in set (0.001 sec)
+
+5
+
+MariaDB [ABU]> select COMPANY_NAME,SALARY from WORKS GROUP BY COMPANY_NAME HAVING sum(SALARY)<= ALL (select sum(SALARY) from WORKS GROUP BY COMPANY_NAME);
++--------------+--------+
+| COMPANY_NAME | SALARY |
++--------------+--------+
+| INDIAN BANK  |  15000 |
++--------------+--------+
+1 row in set (0.001 sec)
+
+6
+
+MariaDB [ABU]> update WORKS set SALARY=SALARY +(SALARY*10/100) where COMPANY_NAME="SBI";
+Query OK, 3 rows affected (0.004 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+MariaDB [ABU]> select * from WORKS;
++--------+--------------+--------+
+| EMP_ID | COMPANY_NAME | SALARY |
++--------+--------------+--------+
+| E1     | SBI          |  66000 |
+| E2     | SBI          |  22000 |
+| E3     | SBI          |  33000 |
+| E4     | INDIAN BANK  |  15000 |
+| E5     | INDIAN BANK  |  15000 |
+| E6     | INDIAN BANK  |  25000 |
+| E7     | INDIAN BANK  |  27000 |
++--------+--------------+--------+
+7 rows in set (0.000 sec)
+
+7
+
+MariaDB [ABU]> select COMPANY_NAME from WORKS group by COMPANY_NAME having count(*)>=all(select count(*) from WORKS group by COMPANY_NAME);
++--------------+
+| COMPANY_NAME |
++--------------+
+| INDIAN BANK  |
++--------------+
+1 row in set (0.001 sec)
+
+
+8
+
+MariaDB [ABU]> select COMPANY_NAME FROM WORKS GROUP BY COMPANY_NAME HAVING AVG(SALARY)>ALL(SELECT AVG(SALARY) FROM WORKS WHERE COMPANY_NAME="INDIAN BANK" GROUP BY COMPANY_NAME);
++--------------+
+| COMPANY_NAME |
++--------------+
+| SBI          |
++--------------+
+1 row in set (0.001 sec)
+
+
+9
+
+MariaDB [ABU]> select distinct EMP_NAME,WORKS.EMP_ID,SALARY FROM EMP,WORKS  where EMP.EMP_ID=WORKS.EMP_ID HAVING SALARY > all (select salary  from WORKS where COMPANY_NAME="INDIAN BANK");
++----------+--------+--------+
+| EMP_NAME | EMP_ID | SALARY |
++----------+--------+--------+
+| ABHI     | E1     |  66000 |
+| MANU     | E3     |  33000 |
++----------+--------+--------+
+2 rows in set (0.001 sec)
+
